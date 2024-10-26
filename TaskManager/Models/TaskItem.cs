@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TaskManager.Models
 {
-    public class TaskItem
+    public class TaskItem 
     {
         [Key]
         public int Id { get; set; }
@@ -15,6 +15,9 @@ namespace TaskManager.Models
         public string Description { get; set; }
         [Required]
         public string Priority { get; set; }
+        public int AssigneeId { get; set; }
+        public User? Assignee { get; set; }
+      
     } 
 }
 
