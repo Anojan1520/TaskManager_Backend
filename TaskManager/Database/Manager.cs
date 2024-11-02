@@ -11,6 +11,7 @@ namespace TaskManager.Database
         }
         public DbSet<TaskItem> Tasks { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<CheckList> CheckLists { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -22,6 +23,12 @@ namespace TaskManager.Database
                 .HasMany(a => a.Task)
                 .WithOne(u => u.Assignee)
                 .HasForeignKey(u => u.AssigneeId);
+
+            modelBuilder.Entity<TaskItem>()
+                .HasMany(c => c.CheckList)
+                .WithOne(t => t.TaskItem)
+                .HasForeignKey(t => t.TaskId);
+
             base.OnModelCreating(modelBuilder);
         }
     }

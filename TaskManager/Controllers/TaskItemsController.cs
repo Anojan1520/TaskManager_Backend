@@ -32,7 +32,7 @@ namespace TaskManager.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<TaskItem>> GetTaskItem(int id)
         {
-            var taskItem = await _context.Tasks.Include(t=>t.Assignee).SingleOrDefaultAsync(i=>i.Id==id);
+            var taskItem = await _context.Tasks.Include(t=>t.Assignee).Include(c=>c.CheckList).SingleOrDefaultAsync(i=>i.Id==id);
                 
             if (taskItem == null)
             {

@@ -12,8 +12,8 @@ using TaskManager.Database;
 namespace TaskManager.Migrations
 {
     [DbContext(typeof(Manager))]
-    [Migration("20241026084152_new")]
-    partial class @new
+    [Migration("20241102100641_updateuser")]
+    partial class updateuser
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,15 +43,41 @@ namespace TaskManager.Migrations
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("Address");
+                });
+
+            modelBuilder.Entity("TaskManager.Models.CheckList", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<int?>("TaskId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("isDone")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("TaskId");
+
+                    b.ToTable("CheckLists");
                 });
 
             modelBuilder.Entity("TaskManager.Models.TaskItem", b =>
@@ -120,11 +146,18 @@ namespace TaskManager.Migrations
                 {
                     b.HasOne("TaskManager.Models.User", "User")
                         .WithOne("Address")
-                        .HasForeignKey("TaskManager.Models.Address", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TaskManager.Models.Address", "UserId");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TaskManager.Models.CheckList", b =>
+                {
+                    b.HasOne("TaskManager.Models.TaskItem", "TaskItem")
+                        .WithMany("CheckList")
+                        .HasForeignKey("TaskId");
+
+                    b.Navigation("TaskItem");
                 });
 
             modelBuilder.Entity("TaskManager.Models.TaskItem", b =>
@@ -136,6 +169,11 @@ namespace TaskManager.Migrations
                         .IsRequired();
 
                     b.Navigation("Assignee");
+                });
+
+            modelBuilder.Entity("TaskManager.Models.TaskItem", b =>
+                {
+                    b.Navigation("CheckList");
                 });
 
             modelBuilder.Entity("TaskManager.Models.User", b =>

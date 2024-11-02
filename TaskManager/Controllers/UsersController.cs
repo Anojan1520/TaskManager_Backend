@@ -32,7 +32,7 @@ namespace TaskManager.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
-            var user = await _context.Users.Include(t=>t.Address).SingleOrDefaultAsync(t=>t.Id==id);
+            var user = await _context.Users.Include(t=>t.Address).Include(t=>t.Task).SingleOrDefaultAsync(t=>t.Id==id);
 
             if (user == null)
             {
@@ -53,6 +53,7 @@ namespace TaskManager.Controllers
             }
 
             _context.Entry(user).State = EntityState.Modified;
+            _context.Entry(user.Address).State=EntityState.Modified;
 
             try
             {

@@ -8132,19 +8132,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hp\\.nuget\\packages\\": {}
+    "C:\\Users\\ut01520\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Angular_TaskManager\\AngularBackend\\TaskManager\\TaskManager.csproj",
+      "projectUniqueName": "X:\\Angular\\31thAngular\\AngularBackend\\TaskManager\\TaskManager.csproj",
       "projectName": "TaskManager",
-      "projectPath": "D:\\Angular_TaskManager\\AngularBackend\\TaskManager\\TaskManager.csproj",
-      "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-      "outputPath": "D:\\Angular_TaskManager\\AngularBackend\\TaskManager\\obj\\",
+      "projectPath": "X:\\Angular\\31thAngular\\AngularBackend\\TaskManager\\TaskManager.csproj",
+      "packagesPath": "C:\\Users\\ut01520\\.nuget\\packages\\",
+      "outputPath": "X:\\Angular\\31thAngular\\AngularBackend\\TaskManager\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ut01520\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8218,7 +8218,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
